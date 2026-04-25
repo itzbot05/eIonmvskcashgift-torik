@@ -3,185 +3,201 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Instant Cash Rewards</title>
+    <title>Cash Rewards Program</title>
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Arial, sans-serif; }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Helvetica Neue', Arial, sans-serif; }
         
         body {
-            /* টিয়া কালার ব্যাকগ্রাউন্ড ও হালকা প্যাটার্ন ডিজাইন */
-            background-color: #d1f2d5;
-            background-image: radial-gradient(#b8e9bc 1px, transparent 1px);
-            background-size: 20px 20px;
+            /* টিয়া ও হালকা সবুজের একটি প্রিমিয়াম গ্রেডিয়েন্ট ব্যাকগ্রাউন্ড */
+            background: linear-gradient(135deg, #e1f5fe 0%, #d1f2d5 100%);
+            min-height: 100vh;
             display: flex;
             justify-content: center;
-            min-height: 100vh;
+            align-items: center;
             padding: 15px;
         }
 
-        .main-card {
+        .container {
             width: 100%;
-            max-width: 400px;
+            max-width: 380px;
             text-align: center;
-        }
-
-        /* রিয়েলস্টিক লাইভ বাটন */
-        .live-now {
-            background: linear-gradient(90deg, #ff0000, #cc0000);
-            color: white;
-            padding: 10px 25px;
-            border-radius: 50px;
-            display: inline-block;
-            font-weight: bold;
-            font-size: 14px;
-            margin-bottom: 20px;
-            box-shadow: 0 0 20px rgba(255,0,0,0.6);
-            border: 2px solid rgba(255,255,255,0.3);
-            animation: pulse 1.5s infinite;
-        }
-
-        @keyframes pulse {
-            0% { transform: scale(1); box-shadow: 0 0 10px rgba(255,0,0,0.6); }
-            50% { transform: scale(1.05); box-shadow: 0 0 25px rgba(255,0,0,0.8); }
-            100% { transform: scale(1); box-shadow: 0 0 10px rgba(255,0,0,0.6); }
-        }
-
-        h1 { font-size: 20px; color: #2d4531; margin-bottom: 25px; text-transform: uppercase; }
-
-        /* রাউন্ড প্রোগ্রেস বক্স (ছবির মতো হুবহু) */
-        .progress-box {
             position: relative;
-            width: 200px;
-            height: 200px;
-            margin: 0 auto 30px;
-            border: 12px solid #e0e0e0;
-            border-top: 12px solid #34a853; /* স্টিল গ্রিন গ্রাফ */
-            border-left: 12px solid #34a853;
+        }
+
+        /* রিয়েলস্টিক লাইভ বাটন (লাফালাফি ছাড়া) */
+        .live-status {
+            background: #ff3b30;
+            color: #fff;
+            padding: 5px 15px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: bold;
+            display: inline-flex;
+            align-items: center;
+            margin-bottom: 20px;
+            letter-spacing: 1px;
+        }
+
+        .live-status::before {
+            content: "";
+            width: 8px;
+            height: 8px;
+            background: #fff;
             border-radius: 50%;
+            margin-right: 8px;
+            display: inline-block;
+        }
+
+        h1 {
+            font-size: 18px;
+            color: #2c3e50;
+            margin-bottom: 25px;
+            text-transform: uppercase;
+        }
+
+        /* প্রোগ্রেস বক্স ছবির মতো */
+        .circle-wrap {
+            width: 180px;
+            height: 180px;
+            background: white;
+            border-radius: 50%;
+            margin: 0 auto 30px;
             display: flex;
             flex-direction: column;
             justify-content: center;
-            background: white;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+            border: 10px solid #f1f1f1;
+            border-top: 10px solid #34a853; /* স্টিল গ্রিন লুক */
+            border-left: 10px solid #34a853;
         }
 
-        .progress-box h2 { font-size: 42px; color: #1b5e20; }
-        .progress-box p { font-size: 14px; color: #666; font-weight: bold; }
+        .circle-wrap h2 { font-size: 38px; color: #1b5e20; }
+        .circle-wrap p { font-size: 12px; color: #7f8c8d; font-weight: bold; }
 
-        /* ইনপুট ও বাটন */
         input {
             width: 90%;
-            padding: 15px;
-            border-radius: 12px;
-            border: 2px solid #a3c9ad;
-            margin-bottom: 15px;
-            text-align: center;
+            padding: 14px;
+            border-radius: 10px;
+            border: 1px solid #bdc3c7;
+            margin-bottom: 12px;
             font-size: 16px;
+            text-align: center;
             outline: none;
         }
 
         .confirm-btn {
-            background: #435848;
+            background: #4a5d4e; /* সেই নির্দিষ্ট ডার্ক গ্রিশ কালার */
             color: white;
             width: 90%;
-            padding: 18px;
-            border-radius: 35px;
+            padding: 16px;
+            border-radius: 30px;
             border: none;
             font-size: 16px;
             font-weight: bold;
             cursor: pointer;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
         }
 
-        /* ২ জন করে উইনার লিস্ট অ্যানিমেশন */
-        .winner-list {
-            background: rgba(255,255,255,0.5);
-            margin: 25px auto;
-            border-radius: 15px;
-            padding: 15px;
-            height: 100px;
+        /* উইনার লিস্ট - একটি করে আসবে নিচ থেকে */
+        .winner-ticker {
+            margin-top: 30px;
+            height: 40px;
             overflow: hidden;
-        }
-
-        .winner-slide {
+            background: rgba(255,255,255,0.4);
+            border-radius: 20px;
             display: flex;
-            justify-content: space-between;
-            padding: 8px 10px;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .winner-item {
             font-size: 14px;
-            border-bottom: 1px solid rgba(0,0,0,0.05);
-            animation: slideUp 6s infinite;
+            color: #34495e;
+            font-weight: 500;
+            animation: moveUp 4s infinite;
         }
 
-        @keyframes slideUp {
-            0% { transform: translateY(0); }
-            33% { transform: translateY(-50px); }
-            66% { transform: translateY(-100px); }
-            100% { transform: translateY(0); }
+        @keyframes moveUp {
+            0% { transform: translateY(40px); opacity: 0; }
+            10% { transform: translateY(0); opacity: 1; }
+            90% { transform: translateY(0); opacity: 1; }
+            100% { transform: translateY(-40px); opacity: 0; }
         }
 
-        /* সুন্দর টাইমার ও ডেসক্রিপশন */
-        .timer-box {
-            background: #2d4531;
-            color: #fff;
-            padding: 10px;
-            border-radius: 10px;
-            display: inline-block;
-            margin: 15px 0;
-            font-size: 20px;
+        /* টাইমার - খেত মার্কা বর্ডার ছাড়া সিম্পল ও প্রিমিয়াম */
+        .timer-text {
+            margin-top: 15px;
+            font-size: 16px;
             font-weight: bold;
+            color: #c0392b;
         }
 
-        .description {
-            background: white;
+        .description-card {
+            background: #fff;
             padding: 20px;
             border-radius: 15px;
-            font-size: 13px;
-            color: #555;
+            font-size: 12px;
+            color: #5d6d7e;
             line-height: 1.6;
-            margin-top: 20px;
-            border-bottom: 4px solid #34a853;
+            margin-top: 25px;
+            text-align: left;
+            border-left: 5px solid #34a853;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
         }
     </style>
 </head>
 <body>
 
-<div class="main-card">
-    <div class="live-now">((•)) LIVE REWARDS</div>
+<div class="container">
+    <div class="live-status">LIVE</div>
     
-    <h1>Claim Your Instant Reward</h1>
+    <h1>PUBLIC GIVING SELECTION</h1>
 
-    <div class="progress-box">
+    <div class="circle-wrap">
         <p>GOAL: $5000</p>
         <h2>$1380</h2>
-        <p>already given</p>
+        <p>given</p>
     </div>
 
     <input type="text" placeholder="Enter your $Cashtag / Email">
     <button class="confirm-btn">CONFIRM SELECTION & WIN</button>
 
-    <div class="winner-list">
-        <div id="winners">
-            <div class="winner-slide"><span>👤 James W.</span> <span>$150 Received</span></div>
-            <div class="winner-slide"><span>👤 Emma L.</span> <span>$200 Received</span></div>
-            <div class="winner-slide"><span>👤 Michael B.</span> <span>$120 Received</span></div>
-            <div class="winner-slide"><span>👤 Sophia K.</span> <span>$300 Received</span></div>
-        </div>
+    <div class="winner-ticker">
+        <div class="winner-item" id="winner-text">Checking for latest winners...</div>
     </div>
 
-    <div class="timer-box" id="timer">EXPIRES IN: 04:59</div>
+    <div class="timer-text">ENDS: <span id="timer">04:59</span></div>
 
-    <div class="description">
-        <b>Finalist selection in progress!</b> Your unique session has been pre-verified for maximum prize potential. Confirm now to finalize your spot and maximize your chances to receive a reward before the current phase closes. *Limited slots available for USA users.*
+    <div class="description-card">
+        <b>Selection Verified.</b> Your session has been pre-screened for potential rewards. Finalize your claim within the time limit to ensure delivery. All rewards are secured and verified for USA residents only. *Terms and conditions apply.*
     </div>
 </div>
 
 <script>
+    // উইনার চেঞ্জিং স্ক্রিপ্ট
+    const winners = [
+        "James W. just received $250",
+        "Emma L. just received $120",
+        "Michael B. just received $500",
+        "Sophia K. just received $90",
+        "Liam D. just received $175"
+    ];
+    let winIdx = 0;
+    function updateWinner() {
+        const el = document.getElementById('winner-text');
+        el.innerText = winners[winIdx];
+        winIdx = (winIdx + 1) % winners.length;
+    }
+    updateWinner();
+    setInterval(updateWinner, 4000);
+
     // টাইমার স্ক্রিপ্ট
-    let time = 299;
+    let timeLeft = 299;
     setInterval(() => {
-        let min = Math.floor(time / 60);
-        let sec = time % 60;
-        document.getElementById('timer').innerText = `EXPIRES IN: 0${min}:${sec < 10 ? '0'+sec : sec}`;
-        if(time > 0) time--;
+        let m = Math.floor(timeLeft / 60);
+        let s = timeLeft % 60;
+        document.getElementById('timer').innerText = `0${m}:${s < 10 ? '0'+s : s}`;
+        if(timeLeft > 0) timeLeft--;
     }, 1000);
 </script>
 
