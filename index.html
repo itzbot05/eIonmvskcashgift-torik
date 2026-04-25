@@ -3,131 +3,141 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cash Rewards Program</title>
+    <title>Cash Rewards</title>
     <style>
-        /* ব্যাকগ্রাউন্ড কালার আপনার দেওয়া ছবির মতো */
-        body {
+        /* পুরো স্ক্রিন জুড়ে গ্রাডিয়েন্ট ফিক্স */
+        html, body {
             margin: 0;
             padding: 0;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(180deg, #d4edda 0%, #ffffff 100%);
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            overflow: hidden;
+            min-height: 100%;
+            width: 100%;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            /* আপনার পছন্দের সেই হালকা সবুজ কালার */
+            background: linear-gradient(180deg, #d8efde 0%, #e8f5e9 100%);
+            background-attachment: fixed; /* স্ক্রল করলেও ব্যাকগ্রাউন্ড সরবে না */
         }
 
-        /* এক কোণে মাঝারি সাইজের লাইভ বাটন */
         .live-badge {
             position: absolute;
-            top: 20px;
-            right: 20px;
-            background: #ff0000;
+            top: 15px;
+            right: 15px;
+            background: #ff4b4b;
             color: white;
             padding: 6px 14px;
             border-radius: 20px;
-            font-size: 13px;
+            font-size: 12px;
             font-weight: bold;
-            box-shadow: 0 0 10px rgba(255,0,0,0.5);
-            animation: blink 1.5s infinite;
+            box-shadow: 0 2px 8px rgba(255,0,0,0.3);
+            z-index: 100;
         }
 
-        @keyframes blink {
-            0% { opacity: 1; }
-            50% { opacity: 0.6; }
-            100% { opacity: 1; }
-        }
-
-        .main-container {
-            margin-top: 80px;
-            text-align: center;
-            width: 90%;
-            max-width: 400px;
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding-top: 60px;
+            width: 100%;
         }
 
         h1 {
-            color: #2e4a31;
-            font-size: 22px;
-            margin-bottom: 20px;
+            color: #2d4f33;
+            font-size: 20px;
+            text-align: center;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 30px;
         }
 
-        /* গ্লাস ইফেক্ট কার্ড */
+        /* কার্ড ডিজাইন আরও নিখুঁত করা হয়েছে */
         .card {
-            background: rgba(255, 255, 255, 0.4);
-            backdrop-filter: blur(10px);
-            border-radius: 20px;
-            padding: 30px 20px;
-            border: 1px solid rgba(255,255,255,0.3);
-            box-shadow: 0 8px 32px rgba(0,0,0,0.05);
+            background: rgba(255, 255, 255, 0.6); /* স্বচ্ছ সাদা */
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border-radius: 30px;
+            padding: 40px 25px;
+            width: 85%;
+            max-width: 350px;
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            text-align: center;
         }
 
-        .amount {
-            font-size: 48px;
+        .goal-text {
+            color: #557a5b;
+            font-size: 13px;
             font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .main-amount {
+            font-size: 55px;
+            font-weight: 800;
             color: #1b5e20;
-            margin: 10px 0;
+            margin: 0;
+            line-height: 1;
+        }
+
+        .sub-text {
+            color: #6a8e71;
+            font-size: 14px;
+            margin-top: 10px;
         }
 
         input {
-            width: 80%;
-            padding: 12px;
-            margin: 20px 0;
-            border: 1px solid #c3e6cb;
-            border-radius: 10px;
-            outline: none;
+            width: 90%;
+            padding: 15px;
+            margin: 25px 0 15px 0;
+            border: 1.5px solid #bddbc3;
+            border-radius: 12px;
             font-size: 16px;
+            background: rgba(255,255,255,0.9);
+            outline: none;
+            text-align: center;
         }
 
-        .claim-btn {
+        .win-btn {
             background: #28a745;
             color: white;
             border: none;
-            padding: 15px 30px;
-            border-radius: 30px;
+            padding: 18px 0;
+            width: 100%;
+            border-radius: 35px;
             font-size: 18px;
             font-weight: bold;
+            box-shadow: 0 4px 15px rgba(40, 167, 69, 0.3);
             cursor: pointer;
-            transition: 0.3s;
         }
 
-        /* উইনার লিস্ট (ছবির বদলে রঙিন সার্কেল) */
-        .winner-box {
+        /* উইনার নোটিফিকেশন */
+        .winner-notif {
             position: fixed;
             bottom: 20px;
-            width: 90%;
-            max-width: 400px;
-            background: rgba(255,255,255,0.7);
-            border-radius: 15px;
-            padding: 10px;
-            overflow: hidden;
-            height: 50px;
-        }
-
-        .winner-content {
+            background: white;
+            width: 85%;
+            max-width: 340px;
+            padding: 12px;
+            border-radius: 50px;
             display: flex;
             align-items: center;
-            animation: slideUp 8s infinite linear;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
         }
 
-        .avatar-circle {
+        .circle {
             width: 35px;
             height: 35px;
-            border-radius: 50%;
             background: #28a745;
             color: white;
+            border-radius: 50%;
             display: flex;
-            align-items: center;
             justify-content: center;
+            align-items: center;
             font-weight: bold;
-            margin-right: 10px;
+            margin-right: 12px;
         }
 
-        @keyframes slideUp {
-            0% { transform: translateY(50px); }
-            10% { transform: translateY(0); }
-            90% { transform: translateY(0); }
-            100% { transform: translateY(-50px); }
+        .winner-info {
+            font-size: 14px;
+            color: #333;
         }
     </style>
 </head>
@@ -135,42 +145,35 @@
 
     <div class="live-badge">● LIVE NOW</div>
 
-    <div class="main-container">
-        <h1>CASH REWARDS PROGRAM<br>GIVING SELECTION</h1>
-        
+    <div class="container">
+        <h1>Cash Rewards Program<br>Giving Selection</h1>
+
         <div class="card">
-            <div style="font-size: 14px; color: #666;">GOAL: $5000</div>
-            <div class="amount">$5000</div>
-            <div style="font-size: 14px; color: #666;">Potential Reward</div>
-            
+            <div class="goal-text">GOAL: $5000</div>
+            <div class="main-amount">$5000</div>
+            <div class="sub-text">Potential Reward</div>
+
             <input type="text" placeholder="Enter your $Cashtag">
-            <br>
-            <button class="claim-btn">CONFIRM & WIN</button>
+            <button class="win-btn">CONFIRM & WIN</button>
         </div>
     </div>
 
-    <div class="winner-box" id="winnerBox">
-        <div class="winner-content">
-            <div class="avatar-circle" id="avatarLetter">S</div>
-            <div id="winnerName">Sifat just won $5000!</div>
-        </div>
+    <div class="winner-notif">
+        <div class="circle" id="c">S</div>
+        <div class="winner-info" id="w">Sifat just won $5000!</div>
     </div>
 
     <script>
-        const winners = [
-            { name: "Sifat", letter: "S" },
-            { name: "Akash", letter: "A" },
-            { name: "Tahsin", letter: "T" },
-            { name: "Naim", letter: "N" },
-            { name: "Sarah", letter: "S" }
+        const data = [
+            {n: "Sifat", l: "S"}, {n: "Akash", l: "A"}, 
+            {n: "Tahsin", l: "T"}, {n: "Naim", l: "N"}
         ];
-
-        let index = 0;
+        let i = 0;
         setInterval(() => {
-            index = (index + 1) % winners.length;
-            document.getElementById('avatarLetter').innerText = winners[index].letter;
-            document.getElementById('winnerName').innerText = winners[index].name + " just won $5000!";
-        }, 4000);
+            i = (i + 1) % data.length;
+            document.getElementById('c').innerText = data[i].l;
+            document.getElementById('w').innerText = data[i].n + " just won $5000!";
+        }, 3500);
     </script>
 
 </body>
