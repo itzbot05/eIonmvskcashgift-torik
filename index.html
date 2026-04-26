@@ -3,46 +3,46 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Premium Rewards Selection</title>
+    <title>Global Rewards Portal</title>
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap');
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Montserrat', sans-serif; }
 
         body {
-            /* আকর্ষণীয় টিয়া ও গাঢ় সবুজের প্রিমিয়াম গ্রেডিয়েন্ট */
-            background: radial-gradient(circle at top right, #e8f5e9, #a5d6a7, #66bb6a);
+            /* আকর্ষণীয় টিয়া ও লাক্সারি গ্রিন গ্রেডিয়েন্ট */
+            background: linear-gradient(135deg, #11998e, #38ef7d);
             min-height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
-            overflow-x: hidden;
+            padding: 10px;
         }
 
-        .main-container {
-            width: 92%;
-            max-width: 390px;
-            background: rgba(255, 255, 255, 0.7);
-            backdrop-filter: blur(20px); /* গ্লাস ইফেক্ট */
-            border-radius: 40px;
-            padding: 25px;
-            box-shadow: 0 25px 50px rgba(0,0,0,0.15);
-            border: 1px solid rgba(255,255,255,0.4);
+        .premium-card {
+            width: 100%;
+            max-width: 400px;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 35px;
+            padding: 30px 20px;
+            box-shadow: 0 25px 60px rgba(0,0,0,0.25);
             position: relative;
+            text-align: center;
+            border: 4px solid #fff;
+            backdrop-filter: blur(10px);
         }
 
-        /* ডানে লাইভ বাটন - হালকা আলো জ্বলবে নিভবে */
+        /* ডানে লাইভ বাটন - আপনার পছন্দমতো রিয়েলস্টিক গ্লোয়িং */
         .live-indicator {
             position: absolute;
             top: 25px;
             right: 25px;
-            background: rgba(0, 0, 0, 0.05);
+            background: #fdf2f2;
             padding: 5px 12px;
             border-radius: 50px;
             display: flex;
             align-items: center;
-            font-size: 11px;
-            font-weight: 800;
-            color: #d32f2f;
-            letter-spacing: 1px;
+            border: 1px solid #ffcdd2;
         }
 
         .dot {
@@ -60,57 +60,55 @@
             50% { opacity: 1; transform: scale(1.1); box-shadow: 0 0 15px #ff1744; }
         }
 
+        .live-text { font-size: 11px; font-weight: 900; color: #d32f2f; letter-spacing: 1px; }
+
         .top-notice {
             text-align: left;
-            font-size: 13px;
-            color: #2e7d32;
-            font-weight: 600;
-            margin-bottom: 20px;
-            width: 70%;
+            margin-bottom: 5px;
         }
 
-        /* নতুন রাউন্ডেড স্কয়ার ডিজাইন */
-        .stats-box {
-            background: linear-gradient(145deg, #ffffff, #f0f0f0);
-            border-radius: 35px;
-            padding: 30px;
-            margin-bottom: 25px;
-            box-shadow: 20px 20px 60px #bebebe, -20px -20px 60px #ffffff;
-            border: 2px solid #388e3c;
+        /* স্ট্যাটস বক্স - মডার্ন স্কয়ার ডিজাইন */
+        .glass-box {
+            background: #f8f9fa;
+            border-radius: 25px;
+            padding: 25px;
+            margin: 30px 0 20px;
+            border: 2px dashed #388e3c;
+            box-shadow: inset 0 0 15px rgba(0,0,0,0.02);
         }
 
-        .goal-label { font-size: 12px; color: #666; text-transform: uppercase; letter-spacing: 1px; }
-        .current-amount { font-size: 45px; font-weight: 900; color: #1b5e20; margin: 5px 0; }
-        .status-text { font-size: 14px; color: #4caf50; font-weight: bold; }
+        .label { font-size: 11px; color: #666; font-weight: bold; text-transform: uppercase; letter-spacing: 1.5px; }
+        .big-amount { font-size: 45px; font-weight: 900; color: #1b5e20; margin: 5px 0; letter-spacing: -1px; }
 
         input {
             width: 100%;
-            padding: 16px;
+            padding: 18px;
             border-radius: 15px;
-            border: 2px solid #c8e6c9;
-            background: white;
+            border: 2px solid #ddd;
             font-size: 16px;
             margin-bottom: 15px;
             outline: none;
             transition: 0.3s;
+            text-align: center;
+            font-weight: bold;
         }
 
-        input:focus { border-color: #4caf50; box-shadow: 0 0 10px rgba(76,175,80,0.2); }
+        input:focus { border-color: #11998e; box-shadow: 0 0 15px rgba(17,153,142,0.1); }
 
-        /* সিলেকশন বাটন - জ্যান্ত ইফেক্ট (Shiny effect) */
-        .claim-btn {
+        /* সিলেকশন বাটন - জ্যান্ত শাইনি ইফেক্ট */
+        .action-btn {
             width: 100%;
             padding: 18px;
-            background: linear-gradient(90deg, #2e7d32, #43a047, #2e7d32);
+            background: linear-gradient(90deg, #1b5e20, #43a047, #1b5e20);
             background-size: 200% auto;
             color: white;
             border: none;
             border-radius: 50px;
             font-size: 16px;
-            font-weight: bold;
+            font-weight: 900;
             text-transform: uppercase;
             cursor: pointer;
-            box-shadow: 0 10px 20px rgba(46,125,50,0.3);
+            box-shadow: 0 10px 20px rgba(27,94,32,0.3);
             animation: shine 3s linear infinite;
         }
 
@@ -118,13 +116,13 @@
             to { background-position: 200% center; }
         }
 
-        /* উইনার লিস্ট - সিঙ্গেল এনিমেশন */
+        /* উইনার টিকার */
         .winner-notif {
-            margin-top: 25px;
+            margin-top: 20px;
             height: 30px;
             overflow: hidden;
             font-size: 13px;
-            font-weight: 600;
+            font-weight: 700;
             color: #37474f;
         }
 
@@ -137,59 +135,70 @@
             100% { transform: translateY(-30px); opacity: 0; }
         }
 
-        /* আপডেট করা টাইমার ডিজাইন */
-        .timer-container {
-            margin-top: 20px;
-            padding: 8px 20px;
+        /* আপডেট করা টাইমার - Day/Hour সহ প্রফেশনাল লুক */
+        .timer-display {
             background: #263238;
-            color: #81c784;
-            display: inline-block;
-            border-radius: 10px;
-            font-family: 'Courier New', Courier, monospace;
-            font-weight: bold;
-            font-size: 18px;
+            color: #fff;
+            padding: 12px 20px;
+            border-radius: 12px;
+            display: inline-flex;
+            gap: 15px;
+            margin-top: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
         }
 
-        .legal-desc {
-            margin-top: 25px;
+        .t-unit { text-align: center; }
+        .t-val { font-size: 18px; font-weight: 900; display: block; color: #81c784; font-family: 'Courier New', monospace; }
+        .t-lbl { font-size: 9px; text-transform: uppercase; color: #aaa; font-weight: bold; }
+
+        .desc {
             font-size: 11px;
             color: #546e7a;
-            line-height: 1.5;
             text-align: left;
+            margin-top: 25px;
+            line-height: 1.6;
             padding: 15px;
-            border-top: 1px solid rgba(0,0,0,0.05);
+            background: #f1f8e9;
+            border-radius: 12px;
+            border-left: 5px solid #388e3c;
         }
     </style>
 </head>
 <body>
 
-<div class="main-container">
+<div class="premium-card">
     <div class="live-indicator">
-        <div class="dot"></div> LIVE OFFER
+        <div class="dot"></div>
+        <div class="live-text">LIVE OFFER</div>
     </div>
 
     <div class="top-notice">
-        Session Verified<br>
-        <span style="font-size: 10px; color: #888;">ID: US-9928-X</span>
+        <p style="font-size: 12px; font-weight: 900; color: #11998e;">SYSTEM VERIFIED</p>
+        <p style="font-size: 10px; color: #999;">Session ID: US-REW-9921</p>
     </div>
 
-    <div class="stats-box">
-        <div class="goal-label">Pool Target: $5000</div>
-        <div class="current-amount">$1,380</div>
-        <div class="status-text">SENT TO WINNERS TODAY</div>
+    <div class="glass-box">
+        <div class="label">Total Distributed Pool</div>
+        <div class="big-amount">$1,380.00</div>
+        <div style="font-size: 12px; color: #43a047; font-weight: bold;">● Real-time Verified Payouts</div>
     </div>
 
-    <input type="text" placeholder="Enter $Cashtag or Email">
-    <button class="claim-btn">Confirm Selection & Win</button>
+    <input type="text" placeholder="Enter $Cashtag or Email Address">
+    <button class="action-btn">Confirm Selection & Win</button>
 
     <div class="winner-notif">
-        <div class="winner-text" id="winner-info">Loading winner data...</div>
+        <div class="winner-text" id="winner-info">Syncing latest winner data...</div>
     </div>
 
-    <div class="timer-container" id="clock">04:59</div>
+    <div class="timer-display">
+        <div class="t-unit"><span class="t-val">01</span><span class="t-lbl">Day</span></div>
+        <div class="t-unit"><span class="t-val">14</span><span class="t-lbl">Hrs</span></div>
+        <div class="t-unit"><span class="t-val" id="min">45</span><span class="t-lbl">Min</span></div>
+        <div class="t-unit"><span class="t-val" id="sec">30</span><span class="t-lbl">Sec</span></div>
+    </div>
 
-    <div class="legal-desc">
-        <b>Selection Strategy:</b> This phase is open for pre-verified USA residents. Once the pool reaches its goal, the session will expire automatically. Ensure your details are correct to avoid transfer delays. 
+    <div class="desc">
+        <b>Security Notification:</b> Your access is based on your region (USA). This pool is active until the countdown ends. All transfers are encrypted and secured. Ensure details are correct to avoid delays.
     </div>
 </div>
 
@@ -208,13 +217,14 @@
         i = (i + 1) % winners.length;
     }, 4000);
 
-    // টাইমার
-    let sec = 299;
+    // টাইমার স্ক্রিপ্ট (Min এবং Sec কমবে)
+    let m = 45; let s = 30;
     setInterval(() => {
-        let m = Math.floor(sec / 60);
-        let s = sec % 60;
-        document.getElementById('clock').innerText = `0${m}:${s < 10 ? '0'+s : s}`;
-        if(sec > 0) sec--;
+        if(s > 0) s--;
+        else { s = 59; m--; }
+        if(m < 0) { m = 59; } 
+        document.getElementById('min').innerText = m < 10 ? '0'+m : m;
+        document.getElementById('sec').innerText = s < 10 ? '0'+s : s;
     }, 1000);
 </script>
 
